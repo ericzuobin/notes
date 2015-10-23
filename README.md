@@ -2,7 +2,9 @@
 --------------
 
 ###Clojure相关笔记
-- clojure基础笔记
+
+- [Clojure快速入门](https://github.com/ericzuobin/notes/blob/master/clojure/clojure_basic.md)
+- [Clojure基础笔记](https://github.com/ericzuobin/notes/blob/master/clojure/clojure_1.md)
 
 
 
