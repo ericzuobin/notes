@@ -1,17 +1,12 @@
 >为了降低工作机mac的压力，把部分服务前移到ubuntu上面，记录全部操作。<br>
-
 >注：如果想作为纯工作机，ubuntu可以选择不启动UI界面。<br>
-
 >1.按ALT+CTRL+F1切换到字符界面（Linux实体机）<br>
-
 >如果是VMware虚拟机安装的Linux系统，则切换到字符界面的时候需要以下操作<br>
-
 >按下ALT+CTRL+SPACE(空格)，ALT+CTRL不松开，再按F1。这样就可以切换到字符界面了。<br><br>
 2.按ALT+CTRL+F7切换到图形界面（Linux实体机）<br>
 如果是VMware虚拟机安装的Linux系统，则切换到图形界面的时候需要以下操作<br>
 按下ALT+CTRL+SPACE(空格)，ALT+CTRL不松开，<br>
 再按F7。这样就可以切换到图形界面了。<br><br>
-     
 >如果想 Ubuntu 在每次启动到 command prompt ，可以输入以下指令:<br>
 echo “false” \| sudo tee /etc/X11/default-display-manager<br>
 当下次开机时，就会以命令行模式启动（text模式，字符界面登录），<br><br>
@@ -50,31 +45,24 @@ GRUB_GFXMODE=1920x1080<br>
 >打开终端，在终端中输入命令:<br> 
 export LANG=en_US<br>
 xdg-user-dirs-gtk-update<br>
-
 >在弹出的窗口中询问是否将目录转化为英文路径,同意并关闭.<br>
-
 >在终端中输入命令:<br>
 export LANG=zh_CN<br>
-
 >关闭终端,并注销或重启.下次进入系统,系统会提示是否把转化好的目录改回中文.<br>
 选择不许要并且勾上不再提示,并取消修改.主目录的中文转英文就完成了~<br>
-
 >OK，现在你可以像linux迷一样痛快的使用cd命令了，cd /home/linuxmi/Downloads……<br>
 
 ####开启本机SSH
 >本机开放SSH服务就需要安装openssh-server<br>
-sudo apt-get install openssh-server<br><br>
-
+sudo apt-get install openssh-server<br>
 >然后确认sshserver是否启动了：<br>
 ps -e |grep ssh<br>
 如果看到sshd那说明ssh-server已经启动了。<br>
-如果没有则可以这样启动：sudo /etc/init.d/ssh start<br><br>
-
->ssh-server配置文件位于/ etc/ssh/sshd_config，在这里可以定义SSH的服务端口，默认端口是22，你可以自己定义成其他端口号，如222。<br><br>
-
+如果没有则可以这样启动：sudo /etc/init.d/ssh start<br>
+>ssh-server配置文件位于/ etc/ssh/sshd_config，在这里可以定义SSH的服务端口，默认端口是22，你可以自己定义成其他端口号，如222。<br>
 >然后重启SSH服务：<br>
 sudo /etc/init.d/ssh stop<br>
-sudo /etc/init.d/ssh start<br><br>
+sudo /etc/init.d/ssh start<br>
 
 >设置开机自启动：<br>
 打开/etc/rc.local文件，在exit 0语句前加入：<br>
@@ -84,20 +72,17 @@ sudo /etc/init.d/ssh start<br><br>
 >让ubuntu开启telnet服务做服务器<br>
 
 >安装openbsd-inetd:<br>
-sudo apt-get install openbsd-inetd<br><br>
-
->安装telnetd:<br>
-sudo apt-get install telnetd<br><br>
-
->在etc/inetd.conf文件中可以看到这一行内容：<br>
+sudo apt-get install openbsd-inetd<br>
+>1.安装telnetd:<br>
+sudo apt-get install telnetd<br>
+>2.在etc/inetd.conf文件中可以看到这一行内容：<br>
 telnet stream tcp nowait root /usr/sbin/tcpd /usr/sbin/in.telnetd<br>
-如果没有这一行内容，就手动加上。<br><br>
+如果没有这一行内容，就手动加上。<br>
 重启openbsd-inetd<br>
 /etc/init.d/openbsd-inetd restart<br>
-查看telnet运行状态<br>
-netstat -a | grep telnet<br><br>
-
->设置自启动<br>
+3.查看telnet运行状态<br>
+netstat -a | grep telnet<br>
+4.设置自启动<br>
 打开/etc/rc.local文件，在exit 0语句前加入：<br>
 /etc/init.d/openbsd-inetd start<br>
 
@@ -171,7 +156,7 @@ MQ暂时没有加入自启动，开机手动启动即可。<br><br>
 ####安装和配置mysql
 >1.安装MySQL<br>
 sudo apt-get install mysql-server mysql-client<br>
-在安装的过程中会提示你输入Yes，然后会弹出root密码设置界面，这里可以先设置一个root密码作为登录mysql用户使用，<br><br>
+在安装的过程中会提示你输入Yes，然后会弹出root密码设置界面，这里可以先设置一个root密码作为登录mysql用户使用，<br>
 之后需要的时候也可以运行mysqladmin -u root -p password进行修改密码。<br>
 主要是sudo vim /etc/mysql/my.cnf下，注释掉binding-address=127.0.0.1<br><br>
 *特别注意*：/etc/mysql/mysql.conf.d/mysqld.cnf  注释掉binding-address=127.0.0.1
@@ -180,24 +165,21 @@ sudo apt-get install mysql-server mysql-client<br>
 
 >2.打开关闭服务<br>
 打开关闭服务：/etc/init.d/mysql start/stop<br>
-
 >3.MySQL配置(测试环境此处将root权限全部对外开启)<br>
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'admin' WITH GRANT OPTION; 所有的主机都能够远程访问该mac上的mysql。<br>
 flush privileges。<br><br>
-
 >查询mysql状态 <br>
 /etc/init.d/mysql status<br>
 
 ####安装和配置mongod
 >1.安装mongo<br>
-sudo apt-get install mongodb<br><br>
+sudo apt-get install mongodb<br>
 2.配置mongo<br>
 配置文件默认在 sudo vim /etc/mongodb.conf<br>
 将#bind_ip = 127.0.0.1给注释掉<br>
 将日志 权限打开 sudo chmod 777 /var/lib/mongodb<br>
 sudo mkdir /data/db/<br>
-sudo chmod 755 /data/db/<br><br>
-
+sudo chmod 755 /data/db/<br>
 >3.启动mongo<br>
 /etc/init.d/mongodb start<br>
 *开机自启动：update-rc.d mongodb defaults*<br>
