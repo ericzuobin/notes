@@ -45,12 +45,9 @@ GRUB_GFXMODE=1920x1080<br>
 >打开终端，在终端中输入命令:<br> 
 export LANG=en_US<br>
 xdg-user-dirs-gtk-update<br>
-
 >在弹出的窗口中询问是否将目录转化为英文路径,同意并关闭.<br>
-
 >在终端中输入命令:<br>
 export LANG=zh_CN<br>
-
 >关闭终端,并注销或重启.下次进入系统,系统会提示是否把转化好的目录改回中文.<br>
 选择不许要并且勾上不再提示,并取消修改.主目录的中文转英文就完成了~<br>
 >OK，现在你可以像linux迷一样痛快的使用cd命令了，cd /home/linuxmi/Downloads……<br>
@@ -76,16 +73,16 @@ sudo /etc/init.d/ssh start<br>
 
 >安装openbsd-inetd:<br>
 sudo apt-get install openbsd-inetd<br>
->安装telnetd:<br>
+>1.安装telnetd:<br>
 sudo apt-get install telnetd<br>
->在etc/inetd.conf文件中可以看到这一行内容：<br>
+>2.在etc/inetd.conf文件中可以看到这一行内容：<br>
 telnet stream tcp nowait root /usr/sbin/tcpd /usr/sbin/in.telnetd<br>
 如果没有这一行内容，就手动加上。<br>
 重启openbsd-inetd<br>
 /etc/init.d/openbsd-inetd restart<br>
-查看telnet运行状态<br>
+3.查看telnet运行状态<br>
 netstat -a | grep telnet<br>
->设置自启动<br>
+4.设置自启动<br>
 打开/etc/rc.local文件，在exit 0语句前加入：<br>
 /etc/init.d/openbsd-inetd start<br>
 
