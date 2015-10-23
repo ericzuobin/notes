@@ -4,13 +4,11 @@
 ###Clojure相关笔记
 - clojure基础笔记
 
->test
-dada
 
 
 --------------
 ###Ubuntu相关笔记
-- Ubuntu工作环境搭建
+- [Ubuntu工作环境搭建](https://github.com/ericzuobin/notes/blob/master/ubuntu/ubuntu_init.md)
 
   1.为了降低工作机mac的压力，将mysql,Mongo,ActiveMQ,Memcache等服务搭建在虚拟机的ubuntu下面。
 
