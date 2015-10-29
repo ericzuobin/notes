@@ -1,5 +1,5 @@
 ####Clojure快速入门
-- <http://learnxinyminutes.com/docs/clojure/> 英文原文 
+- [英文原文](http://learnxinyminutes.com/docs/clojure/) 
 
 ```
 ; 分号作为注释的开始
@@ -285,7 +285,8 @@ keymap ; => {:a 1, :b 2, :c 3}
 ; 使用/ 来调用静态方法
 (System/currentTimeMillis) ; <a timestamp> (system is always present)
  
-; 使用 doto 来处理可变的类<span style="font-family:宋体;">，所有的函数始终用最初的那个对象值，最后还是返回最初的那个对象</span>  (import java.util.Calendar)
+; 使用 doto 来处理可变的类<span style="font-family:宋体;">，所有的函数始终用最初的那个对象值，<br>
+最后还是返回最初的那个对象</span>  (import java.util.Calendar)
 (doto (Calendar/getInstance)
   (.set 2000 1 1 0 0 0)
   .getTime) ; => A Date. set to 2000-01-01 00:00:00
