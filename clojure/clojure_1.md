@@ -21,12 +21,12 @@
 
 > 在Java中，代码只能存放于方法里面，方法必须存放于类里面，而且由于Java的反射机制，方法本身不能被当做一个变量或者值来直接引用。
 
-~~~
+~~~Clojure
 ;举个例子
 ;实现一个函数，要求可以调用其它函数两次，可以传入任何函数，任何参数
 ;Clojure实现
 
-user=> ( defn call-twice [f x]
+user=> (defn call-twice [f x]
   #_=>   (f x)
   #_=>   (f x))
   #'user/call-twice
@@ -36,11 +36,57 @@ user=> (call-twice println 123)
 123			
 ~~~
 
+####介绍几个基本函数
+- map函数
+> 把一个或多个顺序集合转换成另外一个顺序集合的最基本的高阶函数。
+> 同时map返回的序列是惰性的。
+
+~~~Clojure
+user=> (map clojure.string/lower-case ["Clojure" "Java"])
+("clojure" "java")
+
+user=> (map + [1 2 3] [4 5 6])
+(5 7 9)
+~~~
+
+- reduce函数
+> 应用一个函数把一个集合里的值转换成单个值的过程，叫做归约。
+
+~~~Clojure
+user=> (reduce max [0 -3 10 48])
+48
+;相当于
+user=> (max (max (max 0 -3) 10) 48)
+48
+~~~
+
+- 函数应用apply
+
+>函数应用是不同于普通的函数的调用，给定一个函数，
+以及要传给这个函数的参数序列，然后来调用这个函数的过程叫做函数调用。
+支持调用的函数和参数是运行时才能确定的。
+
+~~~Clojure
+;给一个确定参数，和不定参数的例子
+user=> (def args [1 2 3 4])
+#'user/args
+user=> (apply * 10 2 args)
+480
+~~~
+
+- 偏函数应用 Partial
+
+>把函数fa的一部分参数传给一个函数fa，这样创建一个新的函数fb，
+这个函数fb需要的参数就是你没有传给那个函数fa的那些剩余参数。
+相当于给fa固定了一些参数，剩下的参数往fb传即可。
+
+
+
 
 ####REPL定义：
 - 读入(Read)   
 - 求值(Eval)  
-- 输出(Print) 
+- 输出(Print)
 - 循环(Loop)
 
 
@@ -72,14 +118,15 @@ user=> (call-twice println 123)
 
 ####注释
 - 单行注释以分号开头
-- 形式级别的注释 #_宏
+- 形式级别的注释 \#宏
     优点是可以加入调试信息，告诉reader忽略下一个Clojure形式(表达式).
     类似于comment函数，但是comment函数回存在始终为nil的返回值，可能抛出不必要的异常。
 
 ####集合字面量
-- list                '(a b c) 
+- list                '(a b c)
 - vector            ['a 'b 12.5]
 - map            {:key1 "value1" :key2 "value2"}    注：空格和逗号没有区别，可以使用空格来区分
+{}是Clojure中空map的字面量。
 - set            #{1 2 3}
 
 ####var不是变量
@@ -102,7 +149,7 @@ user=> (call-twice println 123)
 - 作用是在**当前**命名空间定义或者重定义一个var
 
 ####let绑定
-- _下划线指定的let绑定是不关心它的绑定值的。
+- \_下划线指定的let绑定是不关心它的绑定值的。
 - 所有的本地绑定都是不可变的。避免大量的编程错误。
 - let绑定可以在编译器进行解构，简化绑定数组抽取的操作。
 
@@ -113,7 +160,7 @@ user=> (call-twice println 123)
     嵌套解构：(let [[x _ _ [y z]] v])    注：下划线表示忽略某个绑定
     保持剩下的元素：(let [ [x & rest] v ] rest)    ;=(45 66 [22 87]])
     保持被解构的值： :as关键字  (let \[[ x _ z :as original-vector] v]  (conj original-vector (+ x z)) ) ;=[12 45 66 [22 87] 78]
-    
+
 - map解构  []里面对应的是{}
     (def m {:a 5 :b 6 :c [1 88 9] :d 88})
     最基本的map解构： (let \[{ a :a b :b} m] (+ a b))  ;= 11
