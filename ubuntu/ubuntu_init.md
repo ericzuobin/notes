@@ -42,7 +42,7 @@ GRUB_GFXMODE=1920x1080<br>
 >3. 修改以后不重叠的字体有:新宋体 bold,宋体,幼圆,consolas
 
 ####目录改成中文
->打开终端，在终端中输入命令:<br> 
+>打开终端，在终端中输入命令:<br>
 export LANG=en_US<br>
 xdg-user-dirs-gtk-update<br>
 >在弹出的窗口中询问是否将目录转化为英文路径,同意并关闭.<br>
@@ -97,7 +97,7 @@ sudo apt-get install memcached<br>
 /usr/bin/memcached -d start -m 128 -l 172.16.22.250 -p 11211<br><br>
 
 ####安装和配置JDK
->wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" 
+>wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie"
 http://download.oracle.com/otn-pub/java/jdk/7u79-b15/jdk-7u79-linux-i586.tar.gz<br><br>
 >sudo mdkir /usr/java<br>
 sudo tar -zxvf jdk-****-.tar.gz<br>
@@ -113,7 +113,7 @@ export PATH=${JAVA\_HOME}/bin:$PATH<br><br>
 sudo update-alternatives --install /usr/bin/java java /usr/java/jdk1.7.0_79/bin/java 300  <br>
 sudo update-alternatives --install /usr/bin/javac javac /usr/java/jdk1.7.0_79/bin/javac 300  <br>
 sudo update-alternatives --install /usr/bin/jar jar /usr/java/jdk1.7.0_79/bin/jar 300   <br>
-sudo update-alternatives --install /usr/bin/javah javah /usr/java/jdk1.7.0_79/bin/javah 300  <br> 
+sudo update-alternatives --install /usr/bin/javah javah /usr/java/jdk1.7.0_79/bin/javah 300  <br>
 sudo update-alternatives --install /usr/bin/javap javap /usr/java/jdk1.7.0_79/bin/javap 300<br>
 sudo update-alternatives --config java<br>
 
@@ -209,13 +209,98 @@ ssh-keygen -C 'eric******@qq.com' -t rsa<br><br>
 
 >ssh -v git@github.com，输入密码测试是否畅通。<br>
 
+####安装盒配置Apache
+>1.安装httpd（注意权限）
 
+~~~
+[root@local]# ls    // 你会看到你下载的httpd-2.2.9.tar.gz.
+[root@local]# tar –zxvf  httpd-2.2.9.tar.gz // 解压后为httpd-2.2.9
+[root@local]# mkdir /usr/local/web/apache/   //在这个目录下建立文档，利于管理      
+[root@local]# cd httpd-2.2.9
+[root@httpd-2.2.9]#./configure  --prefix=/usr/local/web/apache    //安装路径
+						--enable-shared=max  --enable-module=rewirte  --enable-module=so     
+[root@httpd-2.2.9]# make  //编译
+[root@httpd-2.2.9]# make install //安装
+[root@httpd-2.2.9]# cd bin
+[root@bin]# apachectl start            //开启httpd服务
 
+配置端口：/usr/local/web/apache/conf/httpd.conf
+~~~
 
+>2.相关配置说明
 
+~~~
+./configure //配置源代码树
+--prefix=/usr/local/apache2 //体系无关文件的顶级安装目录PREFIX ，也就Apache的安装目录。
+--enable-module=so //打开 so 模块，so 模块是用来提 DSO 支持的 apache 核心模块
+--enable-mods-shared=all //编译全部的模板，对于不需要我们可以在httpd.conf去掉。
+--enable-cache //支持缓存
+--enable-file-cache //支持文件缓存
+--enable-mem-cache //支持记忆缓存
+--enable-disk-cache //支持磁盘缓存
+--enable-static-support //支持静态连接(默认为动态连接)
+--enable-static-htpasswd //使用静态连接编译 htpasswd - 管理用于基本认证的用户文件
+--enable-static-htdigest //使用静态连接编译 htdigest - 管理用于摘要认证的用户文件
+--enable-static-rotatelogs //使用静态连接编译 rotatelogs - 滚动 Apache 日志的管道日志程序
+--enable-static-logresolve //使用静态连接编译 logresolve - 解析 Apache 日志中的IP地址为主机名
+--enable-static-htdbm //使用静态连接编译 htdbm - 操作 DBM 密码数据库
+--enable-static-ab //使用静态连接编译 ab - Apache HTTP 服务器性能测试工具
+--enable-static-checkgid //使用静态连接编译 checkgid
+--disable-cgid //禁止用一个外部 CGI 守护进程执行CGI脚本
+--disable-cgi //禁止编译 CGI 版本的 PHP
+--enable-ssl // 编译 ssl模块。
+~~~
 
+>3.安装http代理
+~~~
+//配置编译环境
+vi /usr/local/web/apache/build/libtool
 
+build_libtool_libs=no
+↓
+build_libtool_libs=yes
 
+fast_install=neel***
+↓
+fast_install=yes
 
+dlopen_support=unknown
+↓
+dlopen_support=yes
 
+dlopen_self=unknown
+↓
+dlopen_self=yes
 
+dlopen_self_static=unknown
+↓
+dlopen_self_static=yes
+
+host_alias=
+↓
+host_alias=i686-pc-linux-gnu
+
+//cd 到源码包
+cd httpd-2.2.31/modules/proxy
+sudo /usr/local/web/apache/bin/apxs -i -c mod_proxy.c proxy_util.c
+
+sudo /usr/local/web/apache/bin/apxs -i -c mod_proxy_http.c
+
+cd httpd-2.2.31/modules/metadata
+sudo /usr/local/web/apache/bin/apxs  -i -c mod_headers.c
+
+//此时/usr/local/web/apache/modules/下存在
+mod_headers.so  mod_proxy_http.so  mod_proxy.so
+
+//加载so，httpd.conf里面添加
+LoadModule proxy_module modules/mod_proxy.so
+LoadModule proxy_http_module modules/mod_proxy_http.so
+LoadModule headers_module modules/mod_headers.so
+
+ProxyRequests On
+ProxyVia On
+<Proxy *>
+    Order allow,deny
+    allow from all
+</Proxy>
+~~~
