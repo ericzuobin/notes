@@ -59,9 +59,22 @@ LICENSE     README.md   doc         pom.xml     project.clj resources   src     
 ~~~Clojure
 需要修改project.clj
 
-(defproject hs.clojure/learn "0.1.0-SNAPSHOT"
-  :main hs.clojure.learn
+(defproject net.zuobin.study "0.1.0-SNAPSHOT"
+  :main net.zuobin.study
   :dependencies [[org.clojure/clojure "1.6.0"]])
 ~~~
 
 保存后，执行lein run，输出"Hello, world!"
+
+##打包项目
+
+- lein uberjar
+
+>可以将项目打包成独立运行包，但是需要注意的是，打包加入以下这句话才行。
+> (:gen-class :main true),启用main函数
+
+~~~
+(ns net.zuobin.study
+  (:gen-class :main true)
+  (:use [clojure.java.io]))
+~~~  
