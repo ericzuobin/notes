@@ -36,6 +36,10 @@
 - [工具收集](https://github.com/ericzuobin/notes/blob/master/clojure/githubnotes.md)
 
 --------------
+###工作相关
+- [开派奖改造](https://github.com/ericzuobin/notes/blob/master/work/draw/lottery_draw.md)
+
+--------------
 
 #####Blog地址：http://www.zuobin.net
 ######ericzuobin@qq.com
