@@ -126,7 +126,7 @@
 ２. 启动tomcat，然后访问 http://localhost:8080/manager/html
   输入admin/admin(用户名/密码)， 如果出现以下界面，一切正常：
 
-![tomcat2](https://github.com/ericzuobin/notes/blob/master/pic/eclipse/8.png)
+![tomcat2](https://github.com/ericzuobin/notes/blob/master/pic/eclipse/8.jpg)
 
 3. 在maven的settings.xml的servers结点下添加如下代码：
   (让maven在发布项目时用这个manager/tomcat(用户名/密码)这个账号访问tomcat)
@@ -207,4 +207,4 @@ plugins标签下添加以下
 
 3. 运行Maven项目
 
-![import6](https://github.com/ericzuobin/notes/blob/master/pic/eclipse/12.bmp)
+![import6](https://github.com/ericzuobin/notes/blob/master/pic/eclipse/13.bmp)
