@@ -3,6 +3,14 @@
 
 ###Clojure相关笔记
 
+> Why Clojure？
+
+1. 它是Lisp的一种方言
+2. 用它能进行函数式编程
+3. 它运行在一个已有的、成功的平台JVM上
+4. 它内置地支持并发编程
+5. 最重要的,天生Java的互操作优势
+
 - [Clojure快速入门](https://github.com/ericzuobin/notes/blob/master/clojure/clojure_basic.md)
 - [Clojure在IDEA中搭建](https://github.com/ericzuobin/notes/blob/master/clojure/clojure_idea.md)
 - [Clojure基础笔记](https://github.com/ericzuobin/notes/blob/master/clojure/clojure_1.md)
@@ -29,5 +37,6 @@
 
 --------------
 
+#####Blog地址：http://www.zuobin.net
 ######ericzuobin@qq.com
 
