@@ -4,8 +4,10 @@
 ###Clojure相关笔记
 
 - [Clojure快速入门](https://github.com/ericzuobin/notes/blob/master/clojure/clojure_basic.md)
+- [Clojure在IDEA中搭建](https://github.com/ericzuobin/notes/blob/master/clojure/clojure_idea.md)
 - [Clojure基础笔记](https://github.com/ericzuobin/notes/blob/master/clojure/clojure_1.md)
 - [Clojure集合与数据结构](https://github.com/ericzuobin/notes/blob/master/clojure/clojure_2.md)
+- [Clojure并发](https://github.com/ericzuobin/notes/blob/master/clojure/clojure_3.md)
 
 
 
@@ -20,6 +22,10 @@
 
 
 
+
+--------------
+###工具相关
+- [工具收集](https://github.com/ericzuobin/notes/blob/master/clojure/githubnotes.md)
 
 --------------
 
