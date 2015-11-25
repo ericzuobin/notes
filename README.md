@@ -16,6 +16,7 @@
 - [Clojure基础笔记](https://github.com/ericzuobin/notes/blob/master/clojure/clojure_1.md)
 - [Clojure集合与数据结构](https://github.com/ericzuobin/notes/blob/master/clojure/clojure_2.md)
 - [Clojure并发](https://github.com/ericzuobin/notes/blob/master/clojure/clojure_3.md)
+- [关于IDEA的Clojure插件Cursive的Main方法](https://github.com/ericzuobin/notes/blob/master/clojure/cursive.md)
 
 --------------
 ###Java
