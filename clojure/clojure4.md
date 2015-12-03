@@ -1,6 +1,7 @@
-##Clojure与Java
+##Clojure与Java互操作
 
->学习一门语言肯定要学习两个语言中不同的地方，以下持续介绍Clojure和Java思维不同的地方。
+>学习一门语言肯定要学习两个语言中不同的地方，以下介绍Clojure和Java不同的地方。
+> 关键是要培养函数式的思维！
 
 ####在刚开始使用Clojure的时候，会有一些不适应。
 
@@ -9,6 +10,112 @@
 3. 关键还是API不熟，函数式思维还没建立。
 
 ####以下部分例子，转换函数式思维
+
+- import操作
+
+~~~Clojure
+;用于导入Java的类
+(ns foo.bar
+  (:import (java.util Date
+                      Calendar)
+           (java.util.logging Logger
+                              Level)))
+
+~~~
+
+- Java操作(很多都是通过反射实现的,后面有介绍如何降低反射带来的消耗)
+
+1. 创建一个对象
+
+  (ClassName.) 不带参数
+  (ClassName. args1 args2) 带参数
+
+2. 调用实例方法
+
+  (.methodName object) 不带参数
+  (.methodName object args1 args2) 带参数
+
+3. 调用类静态方法
+
+  (ClassName/staticMehod)
+  (ClassName/staticMehod args1 args2)
+
+4. 访问类静态字段
+
+  (ClassName/Field)
+
+5. 引用Class   
+
+  ClassName  ;相当于ClassName.Class
+
+6. 访问对象实例字段
+
+  (.field object)
+
+7. 给对象实例字段赋值
+
+  (set! (.field object) newvalue)
+
+~~~Clojure
+user=> (import java.util.Date)
+java.util.Date
+
+user=> (def *now* (Date.))
+#'user/*now*
+
+user=> (str *now*)
+"Tue Jul 13 17:53:54 IST 2015"
+~~~
+
+- 便利的一些互操作宏
+
+1. ..宏(方法调用宏)
+
+  可以依次执行的一个宏,减少代码量
+
+~~~Clojure
+(. (. calendar getTimeZone) getDisplayName) ;
+(.. calendar getTimeZone getDisplayName) ;
+
+user> (.. "fooBAR" (toLowerCase) (contains "ooba"))
+true
+~~~
+
+2. doto宏
+
+  调用一系列的嵌套形式，把doto的第一个参数作为第一个参数传给后面的所有的形式。
+
+~~~Clojure
+user> (doto (java.util.HashMap.)
+            (.put "a" 1)
+            (.put "b" 2)
+            (println))
+#<HashMap {b=2, a=1}>
+{"b" 2, "a" 1}
+~~~
+
+3. 异常处理(和Java类似)
+
+~~~Clojure
+=> (try
+     (/ 1 0)
+     (catch Exception e (str "caught exception: " (.getMessage e))))
+
+"caught exception: Divide by zero"
+~~~
+
+4. finally的挽歌,withopen
+
+  帮助你自动关闭资源。
+
+~~~Clojure
+user=> (with-open [r (clojure.java.io/input-stream "myfile.txt")]
+         (loop [c (.read r)]
+           (if (not= c -1)
+             (do
+               (print (char c))
+               (recur (.read r))))))
+~~~
 
 - 强制类型转换
 
@@ -151,4 +258,26 @@ user=> (for [x (range) :while (< x 10)
         (if (= x 10)
           result
           (recur (conj result x) (inc x))))
+~~~
+
+- -> ->> 宏
+
+  -> 将前一个函数的值当做下一个函数的第一个参数
+  ->> 将前一个函数的值当做下一个函数的最后一个参数
+
+~~~Clojure
+;->宏
+user=> (-> "a b c d"
+           .toUpperCase
+           (.replace "A" "X")
+           (.split " ")
+           first)
+"X"
+
+;->>宏
+user=> (def c 5)
+user=> (->> c (+ 3) (/ 2) (- 1))                          
+3/4
+;相当于(- 1 (/ 2 (+ 3 c)))
+
 ~~~
