@@ -24,6 +24,10 @@
 
 - [Java反射的经典例子](https://github.com/ericzuobin/notes/blob/master/Java/reflect.md）
 
+--------------
+###Storm基础笔记
+
+- [Storm基础学习笔记](https://github.com/ericzuobin/notes/blob/master/storm/storm1.md)
 
 --------------
 ###Ubuntu相关笔记
@@ -32,9 +36,6 @@
   1.为了降低工作机mac的压力，将mysql,Mongo,ActiveMQ,Memcache等服务搭建在虚拟机的ubuntu下面。
 
   2.后续：待搭建jenkins等持续化集成服务。
-
-
-
 
 
 --------------
