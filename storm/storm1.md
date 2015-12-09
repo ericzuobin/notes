@@ -71,3 +71,13 @@
 - 远程模式
 
   提交Topology到集群，不显示调试信息，用于生产环境。
+
+####常用的类
+
+- BaseRichSpout(消息生产者)
+- BaseRichBolt(消息处理者)
+- TopologyBuilder(拓扑构建器)
+- Values(数据存放传输给下个组件)
+- Tuple(封装的元消息)
+- Config(基本配置)
+- StormSubmitter/LocalCluster(拓扑提交器)
