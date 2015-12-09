@@ -22,7 +22,7 @@
 --------------
 ###Java
 
-- [Java反射的经典例子](https://github.com/ericzuobin/notes/blob/master/Java/reflect.md）
+- [Java反射的经典例子](https://github.com/ericzuobin/notes/blob/master/Java/reflect.md)
 
 --------------
 ###Storm基础笔记
