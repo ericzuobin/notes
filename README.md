@@ -27,8 +27,9 @@
 
 --------------
 ###Storm基础笔记
-
+- [ZooKeeper安装与配置](https://github.com/ericzuobin/notes/blob/master/storm/zookeeper-install.md)
 - [Storm基础学习笔记](https://github.com/ericzuobin/notes/blob/master/storm/storm1.md)
+
 
 --------------
 ###Ubuntu相关笔记
