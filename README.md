@@ -10,6 +10,7 @@
 3. 它运行在一个已有的、成功的平台JVM上
 4. 它内置地支持并发编程
 5. 最重要的,天生Java的互操作优势
+6. **Because of Storm**
 
 - [Clojure快速入门](https://github.com/ericzuobin/notes/blob/master/clojure/clojure_basic.md)
 - [Clojure在IDEA中搭建](https://github.com/ericzuobin/notes/blob/master/clojure/clojure_idea.md)
