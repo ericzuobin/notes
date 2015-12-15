@@ -42,7 +42,9 @@
 
 - Stream grouping（流分组）
 
-  流分组在Bolt 的任务中定义流应该如何分区。
+  流分组在Bolt 的任务中定义流应该如何分区。拓扑定义中的一部分，为每个Bolt指定应该接收哪个流作为输入。
+
+  >有点类似于Spring JMS中为每个Listener设定的监听。
 
 - Task（任务）
 
@@ -51,6 +53,22 @@
 - Worker（工作进程）
 
   Topology跨一个或多个Worker节点的进程执行。每个Worker节点的进程是一个物理的JVM和Topology执行所有任务的一个子集。
+
+  容错机制：当一个Worker（工作进程）死亡，Supervisor 会尝试重启它。如果它在启动时连续失败了一定的次数，
+  无法发送心跳信息到Nimbus，Nimbus 将在另一台主机上重新分配Worker。
+
+~~~Java
+//定义一个拓扑
+TopologyBuilder builder = new TopologyBuilder();
+
+//配置Spout
+builder.setSpout("sentences", new KestrelSpout("kestrel.backtype.com",
+22133, "sentence_queue",new StringScheme()));
+
+//配置不同的Bolt
+builder.setBolt("split", new SplitSentence(), 10).shuffleGrouping("sentences");
+builder.setBolt("count", new WordCount(), 20).fieldsGrouping("split", new Fields("word"));
+~~~
 
 ####Storm节点
 
@@ -61,6 +79,9 @@
 - 工作节点
 
   工作结点运行一个叫做Supervisor的守护进程，它执行topology的一部分。
+
+>Nimbus 和Supervisor 守护进程被设计成快速失败的（每当遇到任何意外的情况，进程自
+动毁灭）和无状态的（所有状态都保存在ZooKeeper 或者磁盘上）
 
 ####Storm操作模式
 
@@ -74,10 +95,27 @@
 
 ####常用的类
 
-- BaseRichSpout(消息生产者)
+- BaseRichSpout/IRichSpout(消息生产者)
 - BaseRichBolt(消息处理者)
 - TopologyBuilder(拓扑构建器)
 - Values(数据存放传输给下个组件)
 - Tuple(封装的元消息)
 - Config(基本配置)
 - StormSubmitter/LocalCluster(拓扑提交器)
+
+####Storm的可靠性机制
+
+- Storm可靠性功能的用户，有两件事情必须完成：一是当在树的元组上创建一
+个新链接时需要通知Storm，二是处理完成一个单一元组时需要通知Storm。(Acker机制)
+
+  如何保证消息的可靠性:某个组件从队列里面取出一个消息时，它将“打开”消息。这意味着消息实际上还没有从队列取出，
+  而是放在“待定”状态等待确认消息已经完成。当在“待定”状态时，一个消息将不会被发送到其他消费者队列。
+  如果客户端断开连接，所有“待定”状态的消息会放回到队列。
+
+- Acker机制
+
+  原理就是:一个数字跟自己异或得到的值是0,每一个操作数出现且仅出现两次。
+
+  一般使用:首先,在你生成一个新的tuple的时候要通知storm; 其次,完成处理一个tuple之后要通知storm。
+
+  >Spout发射完某个MessageId对应的源Tuple之后，它会告诉Acker自己发射的RootId以及生成的那些源Tuple的Id。而当Bolt处理完一个输入Tuple并产生出新的Tuple时，也会告知Acker自己处理的输入Tuple的Id以及新生成的那些Tuple的Id(如果失败了自然就不会发送了，不发送的话代表tuple树就失败了)。Acker只需要对这些Id进行异或运算，就能判断出该RootId对应的消息单元是否成功处理完成了。
