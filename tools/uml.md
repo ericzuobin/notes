@@ -1,4 +1,4 @@
-##PlantUML
+##PlantUML,高效的UML画图工具
 
 PlantUML是一个画图脚本语言，用它可以快速地画出：时序图、流程图、用例图、状态图、组件图。
 官网为[plantuml.com](http://plantuml.com/)

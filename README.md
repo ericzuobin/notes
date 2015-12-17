@@ -44,6 +44,7 @@
 ###工具相关
 - [工具收集](https://github.com/ericzuobin/notes/blob/master/clojure/githubnotes.md)
 - [ssh无密码登陆](https://github.com/ericzuobin/notes/blob/master/tools/sshnopass.md)
+- [PlantUML,高效的UML画图工具](https://github.com/ericzuobin/notes/blob/master/tools/uml.md)
 - [Eclipse基础环境搭建](https://github.com/ericzuobin/notes/blob/master/tools/eclipse_maven.md)
 
 --------------
