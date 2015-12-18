@@ -12,41 +12,41 @@
 5. 最重要的,天生Java的互操作优势
 6. **Because of Storm**
 
-- [Clojure快速入门](https://github.com/ericzuobin/notes/blob/master/clojure/clojure_basic.md)
-- [Clojure在IDEA中搭建](https://github.com/ericzuobin/notes/blob/master/clojure/clojure_idea.md)
-- [Clojure基础笔记](https://github.com/ericzuobin/notes/blob/master/clojure/clojure_1.md)
-- [Clojure集合与数据结构](https://github.com/ericzuobin/notes/blob/master/clojure/clojure_2.md)
-- [Clojure并发](https://github.com/ericzuobin/notes/blob/master/clojure/clojure_3.md)
-- [Clojure与Java](https://github.com/ericzuobin/notes/blob/master/clojure/clojure4.md)
-- [关于IDEA的Clojure插件Cursive的Main方法](https://github.com/ericzuobin/notes/blob/master/clojure/cursive.md)
+- [Clojure学习笔记之Clojure快速入门](https://github.com/ericzuobin/notes/blob/master/clojure/clojure_basic.md)
+- [Clojure学习笔记之Clojure在IDEA中搭建](https://github.com/ericzuobin/notes/blob/master/clojure/clojure_idea.md)
+- [Clojure学习笔记之Clojure基础笔记](https://github.com/ericzuobin/notes/blob/master/clojure/clojure_1.md)
+- [Clojure学习笔记之Clojure集合与数据结构](https://github.com/ericzuobin/notes/blob/master/clojure/clojure_2.md)
+- [Clojure学习笔记之Clojure并发](https://github.com/ericzuobin/notes/blob/master/clojure/clojure_3.md)
+- [Clojure学习笔记之Clojure与Java](https://github.com/ericzuobin/notes/blob/master/clojure/clojure4.md)
+- [Clojure学习笔记之IDEA的中Cursive的Main方法](https://github.com/ericzuobin/notes/blob/master/clojure/cursive.md)
 
 --------------
 ###Java
 
-- [Java反射的经典例子](https://github.com/ericzuobin/notes/blob/master/Java/reflect.md)
+- [Java学习笔记之Java反射的经典例子](https://github.com/ericzuobin/notes/blob/master/Java/reflect.md)
 
 --------------
 ###Storm基础笔记
-- [ZooKeeper安装与配置](https://github.com/ericzuobin/notes/blob/master/storm/zookeeper-install.md)
-- [Storm基础学习笔记](https://github.com/ericzuobin/notes/blob/master/storm/storm1.md)
-- [Storm安装教程](https://github.com/ericzuobin/notes/blob/master/storm/storm-install.md)
+- [Storm学习笔记之ZooKeeper安装与配置](https://github.com/ericzuobin/notes/blob/master/storm/zookeeper-install.md)
+- [Storm学习笔记之Storm基础学习笔记](https://github.com/ericzuobin/notes/blob/master/storm/storm1.md)
+- [Storm学习笔记之Storm安装教程](https://github.com/ericzuobin/notes/blob/master/storm/storm-install.md)
 
 
 --------------
-###Ubuntu相关笔记
-- [Ubuntu工作环境搭建](https://github.com/ericzuobin/notes/blob/master/ubuntu/ubuntu_init.md)
+###Linux相关笔记
+- [Linux学习笔记之Ubuntu工作环境搭建](https://github.com/ericzuobin/notes/blob/master/ubuntu/ubuntu_init.md)
 
   1.为了降低工作机mac的压力，将mysql,Mongo,ActiveMQ,Memcache等服务搭建在虚拟机的ubuntu下面。
 
   2.后续：待搭建jenkins等持续化集成服务。
 
+- [Linux学习笔记之ssh无密码登陆](https://github.com/ericzuobin/notes/blob/master/tools/sshnopass.md)
 
 --------------
 ###工具相关
-- [工具收集](https://github.com/ericzuobin/notes/blob/master/clojure/githubnotes.md)
-- [ssh无密码登陆](https://github.com/ericzuobin/notes/blob/master/tools/sshnopass.md)
-- [PlantUML,高效的UML画图工具](https://github.com/ericzuobin/notes/blob/master/tools/uml.md)
-- [Eclipse基础环境搭建](https://github.com/ericzuobin/notes/blob/master/tools/eclipse_maven.md)
+- [工具笔记之工具收集](https://github.com/ericzuobin/notes/blob/master/clojure/githubnotes.md)
+- [工具笔记之PlantUML,高效的UML画图工具](https://github.com/ericzuobin/notes/blob/master/tools/uml.md)
+- [工具笔记之Eclipse基础环境搭建](https://github.com/ericzuobin/notes/blob/master/tools/eclipse_maven.md)
 
 --------------
 ###工作相关
