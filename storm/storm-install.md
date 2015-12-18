@@ -9,10 +9,13 @@
 
 - 安装Python
 - 安装JDK配置
-- 安装Zookeeper
 - 安装unzip
 
->以上安装在本Blog都写过。
+以上安装参考:[Ubuntu工作环境搭建](https://github.com/ericzuobin/notes/blob/master/ubuntu/ubuntu_init.md)
+
+- 安装Zookeeper
+
+Zookeeper安装参考:[ZooKeeper安装与配置](https://github.com/ericzuobin/notes/blob/master/storm/zookeeper-install.md)
 
 - 安装zeromq
 
