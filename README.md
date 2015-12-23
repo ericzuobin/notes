@@ -30,6 +30,7 @@
 - [Storm学习笔记之ZooKeeper安装与配置](https://github.com/ericzuobin/notes/blob/master/storm/zookeeper-install.md)
 - [Storm学习笔记之Storm基础学习笔记](https://github.com/ericzuobin/notes/blob/master/storm/storm1.md)
 - [Storm学习笔记之Storm安装教程](https://github.com/ericzuobin/notes/blob/master/storm/storm-install.md)
+- [Storm学习笔记之Storm日志配置](https://github.com/ericzuobin/notes/blob/master/storm/storm-logback.md)
 
 
 --------------
