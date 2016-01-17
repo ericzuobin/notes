@@ -43,6 +43,8 @@
 
 - [Linux学习笔记之ssh无密码登陆](https://github.com/ericzuobin/notes/blob/master/tools/sshnopass.md)
 
+- [云主机简单配置](https://github.com/ericzuobin/notes/blob/master/ubuntu/aliyun.md)
+
 --------------
 ###工具相关
 - [工具笔记之工具收集](https://github.com/ericzuobin/notes/blob/master/clojure/githubnotes.md)
