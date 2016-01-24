@@ -136,7 +136,7 @@ iptables -L  查询已生成的
 ##修改SSH端口号
 
 1. 修改/etc/ssh/sshd_config
-vi /etc/ssh/sshd_config
+vim /etc/ssh/sshd_config
 \#Port 22         //这行去掉#号
 Port 20000      //下面添加这一行
 
